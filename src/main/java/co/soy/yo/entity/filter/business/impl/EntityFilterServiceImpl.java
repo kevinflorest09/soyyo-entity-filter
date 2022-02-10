@@ -6,16 +6,11 @@ import co.soy.yo.entity.filter.model.api.Entity;
 import co.soy.yo.entity.filter.model.assembler.EntityAssembler;
 import co.soy.yo.entity.filter.model.api.Filter;
 import co.soy.yo.entity.filter.model.api.ServerEntity;
-import io.netty.handler.codec.http2.Http2Exception;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.awt.font.NumericShaper;
-import java.net.HttpRetryException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -38,7 +33,7 @@ public class EntityFilterServiceImpl implements EntityFilterService {
                         .collect(Collectors.toList()));
     }
 
-    private Mono<Entity> aux(Integer entityId){
+     Mono<Entity> aux(Integer entityId){
         return webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("dev/entity/v2.1/entities/{entityId}")
                         .build(entityId))
@@ -48,7 +43,7 @@ public class EntityFilterServiceImpl implements EntityFilterService {
 
     }
 
-    public List<Integer> rango(Integer start, Integer end){
+     public List<Integer> rango(Integer start, Integer end){
         int entityId=0;
         List<Integer> rango = new ArrayList<>();
         for(int x = start; x <= end; x++) {
